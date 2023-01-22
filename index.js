@@ -81,7 +81,7 @@ const promptEmployees = () => {
             type: 'list',
             message: 'Please select the next team member you want to add; if finished, select \'finish building my team\'',
             name: 'teamMembers',
-            choices: ['add engineer to the team', 'add an intern to the team', 'finish building my team'],
+            choices: ['add an engineer to the team', 'add an intern to the team', 'finish building my team'],
         }
     ])
         .then(userChoice => {
@@ -154,15 +154,85 @@ const promptEngineer = () => {
     ])
         .then(engineerInput => {
             //use the deconstructing syntax to store values from the object properties into a variable
-            const { name, id, email, github } = managerInput;
+            const { name, id, email, github } = engineerInput;
             const engineer = new Engineer(name, id, email, github);
             teamMembers.push(engineer);
-            console.log(engineer);
+            console.log('You added an engineer to your team');
             promptEmployees();
         })
 
 
 }
+
+const promptIntern = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            message: 'What is your interns\'s name? (required)',
+            name: 'name',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your name');
+                }
+            }
+        },
+        {
+            type: 'input',
+            message: 'what is your employee id number? (required)',
+            name: 'id',
+            validate: id => {
+                if (isNaN(id)) {
+                    console.log('Please enter your employee id');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        },
+        {
+            type: 'input',
+            message: 'what is your email address? (required)',
+            name: 'email',
+            validate: email => {
+                if (email) {
+                    return true;
+                } else {
+                    console.log('Please enter your email address');
+                }
+            }
+        },
+        {
+            type: 'input',
+            message: 'what is your school\'s name? (required)',
+            name: 'school',
+            validate: school => {
+                if (school) {
+                    return true;
+                } else {
+                    console.log('Please enter your school\'s name');
+                    return false;
+                }
+            }
+        }
+    ])
+        .then(internInput => {
+            //use the deconstructing syntax to store values from the object properties into a variable
+            const { name, id, email, school } = internInput;
+            const intern = new Intern(name, id, email, school);
+            teamMembers.push(intern);
+            console.log('You added an intern to the team!');
+            promptEmployees();
+        })
+
+
+}
+
+const promptFinishTeam = () => {
+    console.log('You\'ve finished building your team! Check your dist folder for rendered html page.')
+}
+
 
 
 function makePage(data) {
