@@ -230,14 +230,24 @@ const promptIntern = () => {
 }
 
 const promptFinishTeam = () => {
-    console.log('You\'ve finished building your team! Check your dist folder for rendered html page.')
+    console.log('You\'ve finished building your team!')
 }
 
 
 
-function makePage(data) {
-    fs.writeFile(`index.html`, genHtml(data), 'utf8', (err => err ? console.log(err) : console.log('success')));
+const makePage = data => {
+    fs.writeFile(`./dist/index.html`, data, 'utf8', (err => err ? console.log(err) : console.log('success')));
 
 }
 
-promptManager();
+promptManager()
+.then(promptEmployees)
+.then(teamMembers => {
+    return genHtml(teamMembers);
+})
+.then(htmlPage => {
+    return makePage(htmlPage);
+})
+.catch (err => {
+    console.log(err)
+});
