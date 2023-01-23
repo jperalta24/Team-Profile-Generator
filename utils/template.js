@@ -34,7 +34,7 @@ const genEngineer = (engineer) => {
                             <p>ID: ${engineer.id}</p>
                             <p>Email: <span id='email'><a href="mailto:${engineer.email}">${engineer.email}</a></span>
                             </p>
-                            <p>GitHub: <span id="github"><a href="htps://github.com/${engineer.github}"
+                            <p>GitHub: <span id="github"><a href="https://github.com/${engineer.github}"
                                         target="_blank">${engineer.github}</a> </span></p>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ function genHtml(data) {
             employeeArr.push(engineer);
         }
         
-        if (role === 'intern') {
+        if (role === 'Intern') {
             const intern = genIntern(employee)
             employeeArr.push(intern);
         }

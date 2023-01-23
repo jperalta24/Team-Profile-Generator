@@ -92,9 +92,8 @@ const promptEmployees = () => {
                 case 'add an intern to the team':
                     promptIntern();
                     break;
-                case 'finish building my team':
-                    promptFinishTeam();
-                    break;
+                default:
+                    promptBuildTeam();
             }
         })
 }
@@ -229,25 +228,27 @@ const promptIntern = () => {
 
 }
 
-const promptFinishTeam = () => {
-    console.log('You\'ve finished building your team!')
+const promptBuildTeam = () => {
+console.log('Finished building Team!');
+
+fs.writeFile(`./dist/index.html`,genHtml(teamMembers), 'utf-8', (err => err ? console.log(err) : console.log('success')));
 }
 
 
 
-const makePage = data => {
-    fs.writeFile(`./dist/index.html`, data, 'utf8', (err => err ? console.log(err) : console.log('success')));
+// const makePage = data => {
+//     fs.writeFile(`./dist/index.html`, genHtml(teamMembers), (err => err ? console.log(err) : console.log('success')));
 
-}
+// }
 
 promptManager()
-.then(promptEmployees)
-.then(teamMembers => {
-    return genHtml(teamMembers);
-})
-.then(htmlPage => {
-    return makePage(htmlPage);
-})
-.catch (err => {
-    console.log(err)
-});
+// .then(promptEmployees)
+// .then(teamMembers => {
+//     return ;
+// })
+// .then(htmlPage => {
+//     return makePage(htmlPage);
+// })
+// .catch (err => {
+//     console.log(err)
+// });
