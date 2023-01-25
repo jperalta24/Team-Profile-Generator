@@ -1,3 +1,4 @@
+//importing the needed functions and files 
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
@@ -6,8 +7,10 @@ const fs = require('fs');
 const genHtml = require('./utils/template');
 const Employee = require('./lib/employee');
 
+//empty array to store employees based on user input
 const teamMembers = [];
 
+//prompts the user to enter manager information. It used the employee class 
 const promptManager = () => {
     return inquirer.prompt([
         {
@@ -71,6 +74,7 @@ const promptManager = () => {
         })
 }
 
+// prompts user for information about the rest of their team members.
 const promptEmployees = () => {
     // return inquirer 
     // use a list type to give options for type of employees
@@ -230,25 +234,11 @@ const promptIntern = () => {
 
 const promptBuildTeam = () => {
 console.log('Finished building Team!');
-
+ // creates a new index.html in the dist folder using the genHtml function as a template. 
 fs.writeFile(`./dist/index.html`,genHtml(teamMembers), 'utf-8', (err => err ? console.log(err) : console.log('success')));
 }
 
 
 
-// const makePage = data => {
-//     fs.writeFile(`./dist/index.html`, genHtml(teamMembers), (err => err ? console.log(err) : console.log('success')));
-
-// }
-
+//calls the first function to start the inquirer process
 promptManager()
-// .then(promptEmployees)
-// .then(teamMembers => {
-//     return ;
-// })
-// .then(htmlPage => {
-//     return makePage(htmlPage);
-// })
-// .catch (err => {
-//     console.log(err)
-// });

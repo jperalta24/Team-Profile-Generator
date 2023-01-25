@@ -1,9 +1,9 @@
 //todo
 // create a function for each employee
 // create a function that for loops over all the employees 
-//create an empty array for the employees same function as above
-// 
+//create an empty array for the employees in same function as above
 
+//function to generate manager information on an html page
 const genManager = (manager) => {
     return `
     <div class="col-4 mt-4">
@@ -22,6 +22,7 @@ const genManager = (manager) => {
     `
 }
 
+//function to generate engineer information on an html page
 const genEngineer = (engineer) => {
     return `
     <div class="col-4 mt-4">
@@ -42,6 +43,8 @@ const genEngineer = (engineer) => {
     `
 }
 
+
+//function to generate intern information on an html page
 const genIntern = (intern) => {
     return `
     <div class="col-4 mt-4">
@@ -60,7 +63,7 @@ const genIntern = (intern) => {
     `
 }
 
-
+// data comes from the inquirer prompts in the index.js file.
 function genHtml(data) {
     // for loops over all the employees
     let employeeArr = [];
